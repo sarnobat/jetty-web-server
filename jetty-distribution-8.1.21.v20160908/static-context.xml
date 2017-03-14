@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "http://www.eclipse.org/jetty/configure.dtd">
+
+<Configure id="FileServer" class="org.eclipse.jetty.server.Server">
+    <Call name="addConnector">
+      <Arg>
+          <New class="org.eclipse.jetty.server.nio.SelectChannelConnector">
+            <Set name="host"><Property name="jetty.host" /></Set>
+            <Set name="port"><Property name="jetty.port" default="8080"/></Set>
+          </New>
+      </Arg>
+    </Call>
+
+    <Set name="handler">
+      <New class="org.eclipse.jetty.server.handler.ResourceHandler">
+        <Set name="resourceBase"><Property name="files.base" default="./"/></Set>
+	<Set name="directoriesListed"><Property name="files.list" default="false"/></Set>
+      </New>
+    </Set>
+</Configure>
